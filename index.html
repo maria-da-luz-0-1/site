@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBSALES - Loja de Produtos Gerais</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #ecb248 0%, #CF4432 100%);
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        .cart-count {
+            animation: bounce 0.5s ease;
+        }
+        @keyframes bounce {
+            0%, 20%, 60%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            80% { transform: translateY(-5px); }
+        }
+        .bg-primary { background-color: #ecb248; }
+        .bg-secondary { background-color: #CF4432; }
+        .bg-dark { background-color: #161615; }
+        .bg-accent { background-color: #FFDE59; }
+        .text-primary { color: #ecb248; }
+        .text-secondary { color: #CF4432; }
+        .text-dark { color: #161615; }
+        .text-accent { color: #FFDE59; }
+        .hover\:bg-primary:hover { background-color: #d4a041; }
+        .hover\:bg-secondary:hover { background-color: #b83c2c; }
+        .border-primary { border-color: #ecb248; }
+        .focus\:ring-primary:focus { --tw-ring-color: #ecb248; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">W</span>
+                    </div>
+                    <h1 class="text-2xl font-bold text-dark">WEBSALES</h1>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-dark hover:text-primary transition-colors">Início</a>
+                    <a href="#products" class="text-dark hover:text-primary transition-colors">Produtos</a>
+                    <a href="#about" class="text-dark hover:text-primary transition-colors">Sobre</a>
+                    <a href="#contact" class="text-dark hover:text-primary transition-colors">Contato</a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="relative p-2 text-dark hover:text-primary transition-colors" onclick="toggleCart()">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.1 5H17M9 19.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM20.5 19.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path>
+                        </svg>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-secondary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-5xl font-bold mb-6">Encontre Tudo o Que Você Precisa</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Produtos de qualidade com os melhores preços. Sua loja online de confiança para todas as necessidades.</p>
+            <button onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})" class="bg-white text-dark px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                Ver Produtos
+            </button>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-dark">Nossos Produtos</h2>
+            
+            <!-- Category Filter -->
+            <div class="flex flex-wrap justify-center mb-8 space-x-2 space-y-2">
+                <button onclick="filterProducts('all')" class="filter-btn bg-primary text-white px-4 py-2 rounded-full hover:bg-primary hover:opacity-90 transition-colors">
+                    Todos
+                </button>
+                <button onclick="filterProducts('electronics')" class="filter-btn bg-gray-200 text-dark px-4 py-2 rounded-full hover:bg-gray-300 transition-colors">
+                    Eletrônicos
+                </button>
+                <button onclick="filterProducts('home')" class="filter-btn bg-gray-200 text-dark px-4 py-2 rounded-full hover:bg-gray-300 transition-colors">
+                    Casa
+                </button>
+                <button onclick="filterProducts('fashion')" class="filter-btn bg-gray-200 text-dark px-4 py-2 rounded-full hover:bg-gray-300 transition-colors">
+                    Moda
+                </button>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Products will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-8 text-dark">Sobre a WEBSALES</h2>
+                <p class="text-lg text-gray-600 mb-8">
+                    Há mais de 10 anos no mercado, a WEBSALES é sua parceira de confiança para compras online. 
+                    Oferecemos uma ampla variedade de produtos com qualidade garantida e preços competitivos.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-accent bg-opacity-30 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">🚚</span>
+                        </div>
+                        <h3 class="font-semibold mb-2 text-dark">Entrega Rápida</h3>
+                        <p class="text-gray-600">Entregamos em todo o Brasil com agilidade e segurança</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-accent bg-opacity-30 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">🛡️</span>
+                        </div>
+                        <h3 class="font-semibold mb-2 text-dark">Compra Segura</h3>
+                        <p class="text-gray-600">Seus dados protegidos com a mais alta segurança</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-accent bg-opacity-30 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl">💎</span>
+                        </div>
+                        <h3 class="font-semibold mb-2 text-dark">Qualidade Garantida</h3>
+                        <p class="text-gray-600">Produtos selecionados com garantia de qualidade</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-gray-100 py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-8 text-dark">Entre em Contato</h2>
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <form class="space-y-6" onsubmit="handleContact(event)">
+                        <div>
+                            <input type="text" placeholder="Seu Nome" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Seu Email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <textarea placeholder="Sua Mensagem" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg hover:bg-primary hover:opacity-90 transition-colors font-semibold">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                    <div id="contact-demo" class="mt-4 p-3 bg-yellow-100 border border-yellow-400 rounded-lg text-yellow-800 text-sm hidden">
+                        <strong>Demo:</strong> Este é um formulário de demonstração. Em um site real, seria necessário configurar um backend para processar o envio.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold">W</span>
+                        </div>
+                        <h3 class="text-xl font-bold">WEBSALES</h3>
+                    </div>
+                    <p class="text-gray-400">Sua loja online de confiança para todas as necessidades.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Links Rápidos</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-white transition-colors">Início</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">Produtos</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors">Sobre</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contato</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Categorias</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Eletrônicos</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Casa e Jardim</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Moda</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Esportes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contato</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>📧 contato@websales.com</li>
+                        <li>📱 (11) 99999-9999</li>
+                        <li>📍 São Paulo, SP</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 WEBSALES. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-md w-full p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-bold text-dark">Carrinho de Compras</h3>
+                    <button onclick="toggleCart()" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="cart-items" class="space-y-3 mb-4">
+                    <!-- Cart items will be populated here -->
+                </div>
+                <div class="border-t pt-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-semibold text-dark">Total:</span>
+                        <span id="cart-total" class="font-bold text-xl text-dark">R$ 0,00</span>
+                    </div>
+                    <button onclick="checkout()" class="w-full bg-primary text-white py-2 rounded-lg hover:bg-primary hover:opacity-90 transition-colors">
+                        Finalizar Compra
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample products data
+        const products = [
+            { id: 1, name: "Smartphone Premium", price: 899.99, category: "electronics", image: "📱" },
+            { id: 2, name: "Notebook Gamer", price: 2499.99, category: "electronics", image: "💻" },
+            { id: 3, name: "Fone Bluetooth", price: 199.99, category: "electronics", image: "🎧" },
+            { id: 4, name: "Smart TV 55\"", price: 1899.99, category: "electronics", image: "📺" },
+            { id: 5, name: "Sofá 3 Lugares", price: 1299.99, category: "home", image: "🛋️" },
+            { id: 6, name: "Mesa de Jantar", price: 799.99, category: "home", image: "🪑" },
+            { id: 7, name: "Luminária LED", price: 149.99, category: "home", image: "💡" },
+            { id: 8, name: "Aspirador Robô", price: 699.99, category: "home", image: "🤖" },
+            { id: 9, name: "Camiseta Premium", price: 79.99, category: "fashion", image: "👕" },
+            { id: 10, name: "Tênis Esportivo", price: 299.99, category: "fashion", image: "👟" },
+            { id: 11, name: "Relógio Digital", price: 199.99, category: "fashion", image: "⌚" },
+            { id: 12, name: "Óculos de Sol", price: 149.99, category: "fashion", image: "🕶️" }
+        ];
+
+        let cart = [];
+        let currentFilter = 'all';
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProducts(products);
+        });
+
+        // Display products
+        function displayProducts(productsToShow) {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            productsToShow.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow';
+                productCard.innerHTML = `
+                    <div class="p-6 text-center">
+                        <div class="text-6xl mb-4">${product.image}</div>
+                        <h3 class="font-semibold text-lg mb-2 text-dark">${product.name}</h3>
+                        <p class="text-2xl font-bold text-primary mb-4">R$ ${product.price.toFixed(2).replace('.', ',')}</p>
+                        <button onclick="addToCart(${product.id})" class="w-full bg-primary text-white py-2 rounded-lg hover:bg-primary hover:opacity-90 transition-colors">
+                            Adicionar ao Carrinho
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(productCard);
+            });
+        }
+
+        // Filter products
+        function filterProducts(category) {
+            currentFilter = category;
+            const filteredProducts = category === 'all' ? products : products.filter(p => p.category === category);
+            displayProducts(filteredProducts);
+
+            // Update filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = 'filter-btn bg-gray-200 text-dark px-4 py-2 rounded-full hover:bg-gray-300 transition-colors';
+            });
+            event.target.className = 'filter-btn bg-primary text-white px-4 py-2 rounded-full hover:bg-primary hover:opacity-90 transition-colors';
+        }
+
+        // Add to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartCount();
+            updateCartDisplay();
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartCountElement = document.getElementById('cart-count');
+            cartCountElement.textContent = count;
+            cartCountElement.className = 'cart-count absolute -top-2 -right-2 bg-secondary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center';
+        }
+
+        // Toggle cart modal
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.toggle('hidden');
+            updateCartDisplay();
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-gray-500 text-center py-4">Seu carrinho está vazio</p>';
+                cartTotal.textContent = 'R$ 0,00';
+                return;
+            }
+
+            cartItems.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+
+                const cartItem = document.createElement('div');
+                cartItem.className = 'flex items-center justify-between p-3 bg-gray-50 rounded-lg';
+                cartItem.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <span class="text-2xl">${item.image}</span>
+                        <div>
+                            <h4 class="font-medium text-dark">${item.name}</h4>
+                            <p class="text-sm text-gray-600">R$ ${item.price.toFixed(2).replace('.', ',')}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="updateQuantity(${item.id}, -1)" class="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center hover:bg-gray-400 text-dark">-</button>
+                        <span class="w-8 text-center text-dark">${item.quantity}</span>
+                        <button onclick="updateQuantity(${item.id}, 1)" class="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center hover:bg-gray-400 text-dark">+</button>
+                    </div>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+
+            cartTotal.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+        // Update quantity
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(item => item.id !== productId);
+                }
+                updateCartCount();
+                updateCartDisplay();
+            }
+        }
+
+        // Checkout
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Seu carrinho está vazio!');
+                return;
+            }
+            
+            alert('Obrigado pela sua compra! Este é um site de demonstração.');
+            cart = [];
+            updateCartCount();
+            updateCartDisplay();
+            toggleCart();
+        }
+
+        // Handle contact form
+        function handleContact(event) {
+            event.preventDefault();
+            document.getElementById('contact-demo').classList.remove('hidden');
+            event.target.reset();
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97847ccda643544d',t:'MTc1NjcyNjc3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
