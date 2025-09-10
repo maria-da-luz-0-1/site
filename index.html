@@ -1,13 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEBSALES - Loja de Produtos Gerais</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/style.css">
-    
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #ecb248 0%, #CF4432 100%);
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        .cart-count {
+            animation: bounce 0.5s ease;
+        }
+        @keyframes bounce {
+            0%, 20%, 60%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            80% { transform: translateY(-5px); }
+        }
+        .bg-primary { background-color: #ecb248; }
+        .bg-secondary { background-color: #CF4432; }
+        .bg-dark { background-color: #161615; }
+        .bg-accent { background-color: #FFDE59; }
+        .text-primary { color: #ecb248; }
+        .text-secondary { color: #CF4432; }
+        .text-dark { color: #161615; }
+        .text-accent { color: #FFDE59; }
+        .hover\:bg-primary:hover { background-color: #d4a041; }
+        .hover\:bg-secondary:hover { background-color: #b83c2c; }
+        .border-primary { border-color: #ecb248; }
+        .focus\:ring-primary:focus { --tw-ring-color: #ecb248; }
+    </style>
 </head>
 <body class="bg-gray-50">
     <!-- Header -->
@@ -24,11 +50,17 @@
                 <nav class="hidden md:flex space-x-8">
                     <a href="#home" class="text-dark hover:text-primary transition-colors">Início</a>
                     <a href="#products" class="text-dark hover:text-primary transition-colors">Produtos</a>
+                    <a href="#services" class="text-dark hover:text-primary transition-colors">Serviços</a>
                     <a href="#about" class="text-dark hover:text-primary transition-colors">Sobre</a>
                     <a href="#contact" class="text-dark hover:text-primary transition-colors">Contato</a>
                 </nav>
                 
                 <div class="flex items-center space-x-4">
+                    <button onclick="toggleRegister()" class="text-dark hover:text-primary transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                    </button>
                     <button class="relative p-2 text-dark hover:text-primary transition-colors" onclick="toggleCart()">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.1 5H17M9 19.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM20.5 19.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"></path>
@@ -79,8 +111,144 @@
         </div>
     </section>
 
+    <!-- Benefits Section -->
+    <section class="bg-primary py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4">Por Que Escolher a WEBSALES?</h2>
+                <p class="text-white text-lg">Benefícios exclusivos para nossos clientes</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg p-6 text-center shadow-lg">
+                    <div class="text-4xl mb-4">🎁</div>
+                    <h3 class="font-bold text-dark mb-2">Frete Grátis</h3>
+                    <p class="text-gray-600 text-sm">Acima de R$ 199,00</p>
+                </div>
+                <div class="bg-white rounded-lg p-6 text-center shadow-lg">
+                    <div class="text-4xl mb-4">🔄</div>
+                    <h3 class="font-bold text-dark mb-2">Troca Garantida</h3>
+                    <p class="text-gray-600 text-sm">30 dias para trocar</p>
+                </div>
+                <div class="bg-white rounded-lg p-6 text-center shadow-lg">
+                    <div class="text-4xl mb-4">💳</div>
+                    <h3 class="font-bold text-dark mb-2">12x Sem Juros</h3>
+                    <p class="text-gray-600 text-sm">No cartão de crédito</p>
+                </div>
+                <div class="bg-white rounded-lg p-6 text-center shadow-lg">
+                    <div class="text-4xl mb-4">⭐</div>
+                    <h3 class="font-bold text-dark mb-2">Programa VIP</h3>
+                    <p class="text-gray-600 text-sm">Descontos exclusivos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="bg-gray-100 py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-dark mb-4">Nossos Serviços</h2>
+                <p class="text-gray-600 text-lg">Soluções completas para suas necessidades</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-white text-xl">🛠️</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-dark">Instalação</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Serviço de instalação profissional para eletrônicos e eletrodomésticos</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Técnicos especializados</li>
+                        <li>• Garantia do serviço</li>
+                        <li>• Agendamento flexível</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-white text-xl">🔧</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-dark">Manutenção</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Serviços de manutenção preventiva e corretiva</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Manutenção preventiva</li>
+                        <li>• Reparo especializado</li>
+                        <li>• Peças originais</li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center mr-4">
+                            <span class="text-white text-xl">📞</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-dark">Suporte 24h</h3>
+                    </div>
+                    <p class="text-gray-600 mb-4">Atendimento ao cliente disponível 24 horas por dia</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Chat online</li>
+                        <li>• WhatsApp Business</li>
+                        <li>• Central telefônica</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Rules Section -->
+    <section class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-dark mb-4">Políticas e Garantias</h2>
+                    <p class="text-gray-600 text-lg">Transparência e segurança em todas as transações</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="border-l-4 border-primary pl-6">
+                        <h3 class="text-xl font-bold text-dark mb-3">Política de Entrega</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• Entrega expressa: 1-2 dias úteis (capitais)</li>
+                            <li>• Entrega padrão: 3-7 dias úteis</li>
+                            <li>• Frete grátis acima de R$ 199,00</li>
+                            <li>• Rastreamento em tempo real</li>
+                        </ul>
+                    </div>
+                    <div class="border-l-4 border-secondary pl-6">
+                        <h3 class="text-xl font-bold text-dark mb-3">Política de Troca</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• 30 dias para trocas e devoluções</li>
+                            <li>• Produto em perfeito estado</li>
+                            <li>• Embalagem original preservada</li>
+                            <li>• Coleta gratuita em domicílio</li>
+                        </ul>
+                    </div>
+                    <div class="border-l-4 border-accent pl-6">
+                        <h3 class="text-xl font-bold text-dark mb-3">Garantia Estendida</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• Garantia do fabricante inclusa</li>
+                            <li>• Extensão de garantia disponível</li>
+                            <li>• Cobertura nacional</li>
+                            <li>• Suporte técnico especializado</li>
+                        </ul>
+                    </div>
+                    <div class="border-l-4 border-gray-400 pl-6">
+                        <h3 class="text-xl font-bold text-dark mb-3">Programa Fidelidade</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• Pontos a cada compra</li>
+                            <li>• Descontos progressivos</li>
+                            <li>• Ofertas exclusivas VIP</li>
+                            <li>• Aniversário com desconto especial</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
-    <section id="about" class="bg-white py-16">
+    <section id="about" class="bg-gray-50 py-16">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto text-center">
                 <h2 class="text-3xl font-bold mb-8 text-dark">Sobre a WEBSALES</h2>
@@ -161,6 +329,7 @@
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="#home" class="hover:text-white transition-colors">Início</a></li>
                         <li><a href="#products" class="hover:text-white transition-colors">Produtos</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Serviços</a></li>
                         <li><a href="#about" class="hover:text-white transition-colors">Sobre</a></li>
                         <li><a href="#contact" class="hover:text-white transition-colors">Contato</a></li>
                     </ul>
@@ -188,6 +357,186 @@
             </div>
         </div>
     </footer>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg max-w-2xl w-full p-6 max-h-screen overflow-y-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold text-dark">Cadastro de Cliente</h3>
+                    <button onclick="toggleRegister()" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <form id="register-form" onsubmit="handleRegister(event)" class="space-y-6">
+                    <!-- Dados Pessoais -->
+                    <div class="border-b pb-6">
+                        <h4 class="text-lg font-semibold text-dark mb-4">Dados Pessoais</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-dark mb-2">Nome Completo *</label>
+                                <input type="text" name="fullName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-dark mb-2">CPF *</label>
+                                <input type="text" name="cpf" required placeholder="000.000.000-00" maxlength="14" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-dark mb-2">Email *</label>
+                                <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-dark mb-2">Telefone *</label>
+                                <input type="tel" name="phone" required placeholder="(11) 99999-9999" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-dark mb-2">Data de Nascimento</label>
+                                <input type="date" name="birthDate" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-dark mb-2">Gênero</label>
+                                <select name="gender" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <option value="">Selecione</option>
+                                    <option value="masculino">Masculino</option>
+                                    <option value="feminino">Feminino</option>
+                                    <option value="outro">Outro</option>
+                                    <option value="nao-informar">Prefiro não informar</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Endereço -->
+                    <div class="border-b pb-6">
+                        <h4 class="text-lg font-semibold text-dark mb-4">Endereço</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-dark mb-2">CEP *</label>
+                                <input type="text" name="cep" required placeholder="00000-000" maxlength="9" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-dark mb-2">Estado *</label>
+                                <select name="state" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <option value="">Selecione o Estado</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="CE">Ceará</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-dark mb-2">Cidade *</label>
+                                <input type="text" name="city" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-dark mb-2">Bairro *</label>
+                                <input type="text" name="neighborhood" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-dark mb-2">Rua/Avenida *</label>
+                                <input type="text" name="street" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-dark mb-2">Número *</label>
+                                <input type="text" name="number" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-medium text-dark mb-2">Complemento</label>
+                                <input type="text" name="complement" placeholder="Apartamento, bloco, etc." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Forma de Pagamento -->
+                    <div class="pb-6">
+                        <h4 class="text-lg font-semibold text-dark mb-4">Forma de Pagamento Preferida</h4>
+                        <div class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-dark mb-2">Método Preferido</label>
+                                    <select name="paymentMethod" onchange="togglePaymentFields()" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                        <option value="">Selecione</option>
+                                        <option value="credit-card">Cartão de Crédito</option>
+                                        <option value="debit-card">Cartão de Débito</option>
+                                        <option value="pix">PIX</option>
+                                        <option value="boleto">Boleto Bancário</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <!-- Campos do Cartão -->
+                            <div id="card-fields" class="hidden space-y-4">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-dark mb-2">Número do Cartão</label>
+                                        <input type="text" name="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-dark mb-2">Nome no Cartão</label>
+                                        <input type="text" name="cardName" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-dark mb-2">Validade</label>
+                                        <input type="text" name="cardExpiry" placeholder="MM/AA" maxlength="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-dark mb-2">CVV</label>
+                                        <input type="text" name="cardCvv" placeholder="000" maxlength="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Campo PIX -->
+                            <div id="pix-fields" class="hidden">
+                                <div>
+                                    <label class="block text-sm font-medium text-dark mb-2">Chave PIX (opcional)</label>
+                                    <input type="text" name="pixKey" placeholder="CPF, email, telefone ou chave aleatória" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Termos e Botões -->
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <input type="checkbox" name="terms" required class="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                            <label class="text-sm text-gray-600">
+                                Aceito os <a href="#" class="text-primary hover:underline">termos de uso</a> e 
+                                <a href="#" class="text-primary hover:underline">política de privacidade</a> *
+                            </label>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <input type="checkbox" name="newsletter" class="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                            <label class="text-sm text-gray-600">
+                                Desejo receber ofertas e novidades por email
+                            </label>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button type="button" onclick="toggleRegister()" class="flex-1 bg-gray-300 text-dark py-3 rounded-lg hover:bg-gray-400 transition-colors font-semibold">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="flex-1 bg-primary text-white py-3 rounded-lg hover:bg-primary hover:opacity-90 transition-colors font-semibold">
+                                Cadastrar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                
+                <div id="register-demo" class="mt-4 p-3 bg-yellow-100 border border-yellow-400 rounded-lg text-yellow-800 text-sm hidden">
+                    <strong>Demo:</strong> Este é um formulário de demonstração. Em um site real, os dados seriam salvos com segurança no banco de dados.
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Cart Modal -->
     <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
@@ -374,6 +723,134 @@
             toggleCart();
         }
 
+        // Toggle register modal
+        function toggleRegister() {
+            const modal = document.getElementById('register-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Toggle payment fields based on selected method
+        function togglePaymentFields() {
+            const paymentMethod = document.querySelector('select[name="paymentMethod"]').value;
+            const cardFields = document.getElementById('card-fields');
+            const pixFields = document.getElementById('pix-fields');
+            
+            // Hide all fields first
+            cardFields.classList.add('hidden');
+            pixFields.classList.add('hidden');
+            
+            // Show relevant fields
+            if (paymentMethod === 'credit-card' || paymentMethod === 'debit-card') {
+                cardFields.classList.remove('hidden');
+            } else if (paymentMethod === 'pix') {
+                pixFields.classList.remove('hidden');
+            }
+        }
+
+        // Format CPF input
+        document.addEventListener('DOMContentLoaded', function() {
+            const cpfInput = document.querySelector('input[name="cpf"]');
+            if (cpfInput) {
+                cpfInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                    value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                    e.target.value = value;
+                });
+            }
+
+            // Format CEP input
+            const cepInput = document.querySelector('input[name="cep"]');
+            if (cepInput) {
+                cepInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    value = value.replace(/(\d{5})(\d)/, '$1-$2');
+                    e.target.value = value;
+                });
+            }
+
+            // Format phone input
+            const phoneInput = document.querySelector('input[name="phone"]');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    value = value.replace(/(\d{2})(\d)/, '($1) $2');
+                    value = value.replace(/(\d{5})(\d)/, '$1-$2');
+                    e.target.value = value;
+                });
+            }
+
+            // Format card number input
+            const cardNumberInput = document.querySelector('input[name="cardNumber"]');
+            if (cardNumberInput) {
+                cardNumberInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    value = value.replace(/(\d{4})(\d)/, '$1 $2');
+                    value = value.replace(/(\d{4}) (\d{4})(\d)/, '$1 $2 $3');
+                    value = value.replace(/(\d{4}) (\d{4}) (\d{4})(\d)/, '$1 $2 $3 $4');
+                    e.target.value = value;
+                });
+            }
+
+            // Format card expiry input
+            const cardExpiryInput = document.querySelector('input[name="cardExpiry"]');
+            if (cardExpiryInput) {
+                cardExpiryInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    value = value.replace(/(\d{2})(\d)/, '$1/$2');
+                    e.target.value = value;
+                });
+            }
+        });
+
+        // Handle register form
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const customerData = {};
+            
+            for (let [key, value] of formData.entries()) {
+                customerData[key] = value;
+            }
+            
+            // Validate CPF (basic validation)
+            const cpf = customerData.cpf.replace(/\D/g, '');
+            if (cpf.length !== 11) {
+                alert('CPF deve ter 11 dígitos');
+                return;
+            }
+            
+            // Validate card fields if payment method is card
+            if ((customerData.paymentMethod === 'credit-card' || customerData.paymentMethod === 'debit-card')) {
+                if (!customerData.cardNumber || !customerData.cardName || !customerData.cardExpiry || !customerData.cardCvv) {
+                    alert('Preencha todos os campos do cartão');
+                    return;
+                }
+            }
+            
+            // Show success message
+            document.getElementById('register-demo').classList.remove('hidden');
+            
+            // Reset form
+            event.target.reset();
+            
+            // Hide payment fields
+            document.getElementById('card-fields').classList.add('hidden');
+            document.getElementById('pix-fields').classList.add('hidden');
+            
+            // Show success alert
+            alert('Cadastro realizado com sucesso! Bem-vindo à WEBSALES!');
+            
+            // Close modal after a delay
+            setTimeout(() => {
+                toggleRegister();
+                document.getElementById('register-demo').classList.add('hidden');
+            }, 2000);
+        }
+
         // Handle contact form
         function handleContact(event) {
             event.preventDefault();
@@ -381,5 +858,5 @@
             event.target.reset();
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97847ccda643544d',t:'MTc1NjcyNjc3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97ce9773b0fb544a',t:'MTc1NzUwMzgwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
