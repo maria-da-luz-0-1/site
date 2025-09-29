@@ -25,3 +25,8 @@
         .hover\:bg-secondary:hover { background-color: #b83c2c; }
         .border-primary { border-color: #ecb248; }
         .focus\:ring-primary:focus { --tw-ring-color: #ecb248; }
+
+
+        img{
+            object-fit: cover;
+        }
